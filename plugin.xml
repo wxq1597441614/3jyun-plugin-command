@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License.
+-->
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:rim="http://www.blackberry.com/ns/widgets"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="3jyun-plugin-command"
+    version="1.0.0">
+    <name>command</name>
+    <description>Cordova Iflytek Online command word recognition Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,online command word recognition</keywords>
+
+    <js-module src="www/CommandPlugin.js" name="CommandPlugin">
+        <clobbers target="CommandPlugin" />
+    </js-module>
+    
+    <preference name="YOUR_APPID" default="YOUR_APPID" />
+
+    <!-- android -->
+    <platform name="android">
+		<!-- config.xml configuration info -->
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="CommandPlugin" >
+                 <param name="android-package" value="org.apache.cordova.command.CommandPlugin" />
+            </feature>
+        </config-file>
+
+		<!-- CommandPlugin.java file -->
+        <source-file src="src/android/CommandPlugin.java" target-dir="src/org/apache/cordova/command" />
+
+		<!-- library file -->
+        <source-file src="src/android/libs/Msc.jar" target-dir="libs" />
+		<source-file src="src/android/libs/arm64-v8a" target-dir="libs" />
+		<source-file src="src/android/libs/armeabi" target-dir="libs" />
+		<source-file src="src/android/libs/armeabi-v7a" target-dir="libs" />
+		<source-file src="src/android/libs/mips" target-dir="libs" />
+		<source-file src="src/android/libs/mips64" target-dir="libs" />
+		<source-file src="src/android/libs/x86" target-dir="libs" />
+		<source-file src="src/android/libs/x86_64" target-dir="libs" />
+
+		<!-- ui resource file  -->
+        <source-file src="src/android/iflytek" target-dir="assets" />
+
+		<!-- permission -->
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.INTERNET"/>
+			<uses-permission android:name="android.permission.RECORD_AUDIO"/>
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+			<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+        </config-file>
+
+        <!--appid:Add the plug-in needs to be input -->
+		
+		<config-file target="res/values/strings.xml" parent="/resources">				
+			<string name="app_id">$YOUR_APPID</string>	 
+		</config-file>
+        
+        <info>
+            You need to put the libs directory about replacement xunfei SDK for your appid corresponding SDK, or run a program will be submitted to the 10407 error.
+        </info>
+
+
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <!-- config.xml configuration info-->
+        <config-file target="config.xml" parent="/*">
+            <feature name="CommandPlugin">
+                <param name="ios-package" value="CommandPlugin" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        
+        <!-- The header file  and The resource file-->
+        <header-file src="platform/src/ios/CommandPlugin.h" />
+        <source-file src="platform/src/ios/CommandPlugin.m" />
+        
+
+        <!-- library file -->
+        <framework src="platform/src/ios/frameworks/iflyMSC.framework/"  custom="true"  />
+		<framework src="libz.tbd" />
+        <framework src="CoreTelephony.framework" />
+        <framework src="AddressBook.framework" />
+        <framework src="SystemConfiguration.framework" />
+        <framework src="AVFoundation.framework" />
+        
+        <!-- ATS setting-->
+        <config-file target="*-Info.plist" parent="NSAppTransportSecurity">
+            <dict>
+                <key>NSAllowsArbitraryLoads</key>
+                <true/> </dict>
+        </config-file>
+        
+        <!-- plist file add appid-->
+        <config-file target="*-Info.plist" parent="CFBundleURLTypes">
+                <dict>
+                    <key>app_id</key>
+                    <string>$YOUR_APPID</string>
+                </dict>
+        </config-file>
+
+        
+        
+        
+    </platform>
+
+</plugin>
