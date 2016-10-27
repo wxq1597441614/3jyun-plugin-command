@@ -74,9 +74,7 @@
 			<string name="app_id">$YOUR_APPID</string>	 
 		</config-file>
         
-        <info>
-            You need to put the libs directory about replacement xunfei SDK for your appid corresponding SDK, or run a program will be submitted to the 10407 error.
-        </info>
+   
 
 
     </platform>
@@ -123,5 +121,9 @@
         
         
     </platform>
+	
+	   <info>
+            You need to put the libs directory about replacement xunfei SDK for your appid corresponding SDK, or run a program will be submitted to the 10407 error.
+        </info>
 
 </plugin>
