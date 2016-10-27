@@ -2,7 +2,7 @@
 By means of the xunfei voice open platform SDK, realizing the function of voice cordova plug-in
 # Installation
   
-    cordova plugin add cordova-plugin-command --variable YOUR_APPID="<YOUR_APPID>"
+    cordova plugin add https://github.com/wxq1597441614/3jyun-plugin-command.git --variable YOUR_APPID="<YOUR_APPID>"
     
 # Supported platforms
 
